@@ -23,8 +23,7 @@ export default   {
                 time:'',
                 storageObj:[],
                 dataObj:[{
-                    time:'',
-                    name:"",
+                    name:"小茹茹",
                     spendname:'',
                     price:''
                 }],
@@ -32,10 +31,12 @@ export default   {
         },
         mounted(){
             this.get();
-
+          
         },
         methods:{
+            // 接收app.vue中发送的数据
             get:function(){
+                // 缓存this
                 var _this = this;
                 Event.$on('date',function(time){
                     _this.time =time;  
@@ -48,11 +49,12 @@ export default   {
                     if(name.indexOf('茹')!=-1){
                        _this.dataObj.push(obj);
                     }
-                    for(var i=0;i<_this.dataObj.length;i++){
+                    // 添加到localStorage中
+                    for(var i=1;i<_this.dataObj.length;i++){
                         window.localStorage.setItem('data'+i,JSON.stringify(_this.dataObj[i]));
-                        _this.storageObj.push(window.localStorage.getItem('data'+i));
-                    }
-                  
+                         let item = window.localStorage.getItem('data'+i)
+                        _this.storageObj.push(JSON.parse(item))
+                    }  
                 })
             },
             getLocalStorage:function(){

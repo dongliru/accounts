@@ -33,7 +33,7 @@ const router = new VueRouter({
     //当路径错误或没有这个路径的时候我们会给予一个默认路径
   ]
 });
-
+// 创建Event对象
 var Event = new Vue();
 
 new Vue({
